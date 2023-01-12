@@ -5,5 +5,7 @@ interface Props {
 }
 
 export const Layout: FC<Props> = ({ children }) => {
-  return <div className="bg-black p-[20px] h-screen w-screen">{children}</div>;
+  return (
+    <div className="bg-black p-[20px] h-screen w-screen flex">{children}</div>
+  );
 };
