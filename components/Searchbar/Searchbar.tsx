@@ -3,7 +3,7 @@ import { FaCompass } from "react-icons/fa";
 
 export const Searchbar: FC = () => {
   return (
-    <form className="relative">
+    <form className="relative w-full">
       <input
         type="text"
         className="w-full h-10 rounded-full top-0 left-0 pl-10"

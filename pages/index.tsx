@@ -8,7 +8,7 @@ const App: FC = () => {
   return (
     <>
       <Layout>
-        <div className="flex flex-col items-center gap-6 w-16">
+        <div className="flex flex-col items-center gap-6">
           <Logo />
           <Navbar />
         </div>
