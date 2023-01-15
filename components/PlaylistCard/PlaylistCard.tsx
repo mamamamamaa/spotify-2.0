@@ -4,7 +4,7 @@ import { AiFillPlayCircle } from "react-icons/ai";
 export const PlaylistCard: FC = () => {
   const numberOfTracks = 12;
   const nameOfPlaylist = "Daily Mix";
-  const musicians = ["Coldplay", "PK", "Alk"];
+  const musicians = ["Coldplay", "PK", "Alk", "DK"];
 
   const listOfMusicians = musicians
     .filter((el, idx) => (idx < 2 ? el : idx === 2 ? "..." : false))
