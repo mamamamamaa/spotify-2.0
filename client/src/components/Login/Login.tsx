@@ -1,10 +1,10 @@
 import { FC } from "react";
 
 interface Props {
-  link?: string;
+  link: string | undefined;
 }
 
-export const Login: FC<Props> = ({ link = "/" }) => {
+export const Login: FC<Props> = ({ link }) => {
   return (
     <div className="h-[200px] flex items-center justify-center">
       <a
