@@ -12,6 +12,7 @@ export const useAuth = (code: string) => {
       .post(address, { code })
       .then((data) => console.log(data))
       .catch(() => {
+        console.log("error");
         // @ts-ignore
         window.location = "/";
       });
