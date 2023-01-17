@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const SpotifyWebApi = require("spotify-web-api-node");
 require("dotenv").config();
 
@@ -7,6 +8,8 @@ const app = express();
 const { PORT, CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } = process.env;
 
 app.use(cors());
+app.use(bodyParser.json());
+
 app.post("/login", (req, res) => {
   const { code } = req.body;
   const spotifyApi = new SpotifyWebApi({
@@ -16,16 +19,11 @@ app.post("/login", (req, res) => {
   });
 
   spotifyApi.authorizationCodeGrant(code).then((data) => {
-    res
-      .status(201)
-      .json({
-        accessToken: data.body.access_token,
-        refreshToken: data.body.refresh_token,
-        expiresIn: data.body.expires_in,
-      })
-      .catch((error) => {
-        res.status(401).json({ message: error });
-      });
+    res.json({
+      accessToken: data.body.access_token,
+      refreshToken: data.body.refresh_token,
+      expiresIn: data.body.expires_in,
+    });
   });
 });
 
