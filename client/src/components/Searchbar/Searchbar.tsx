@@ -1,4 +1,5 @@
 import { BaseSyntheticEvent, FC, useState } from "react";
+import { FiSearch } from "react-icons/fi";
 
 export const Searchbar: FC = () => {
   const [search, setSearch] = useState<string>();
@@ -6,13 +7,19 @@ export const Searchbar: FC = () => {
   const handleSearch = (e: BaseSyntheticEvent) => setSearch(e.target.value);
 
   return (
-    <>
-      <input
-        type="text"
-        onChange={handleSearch}
-        placeholder="Search track/artist"
-        className="bg-dark text-gray h-16 w-96 rounded-xl px-2 focus:outline-0 m-12"
-      />
-    </>
+    <form className="flex justify-center">
+      <label className="relative">
+        <FiSearch
+          className="absolute top-3.5 left-2 text-gray hover:text-white ease-in-out duration-300 cursor-pointer"
+          size={30}
+        />
+        <input
+          type="text"
+          onChange={handleSearch}
+          placeholder="Search track/artist"
+          className="bg-dark text-gray h-16 w-[800px] rounded-xl pl-12 pr-3.5 focus:outline-0"
+        />
+      </label>
+    </form>
   );
 };
