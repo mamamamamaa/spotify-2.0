@@ -1,11 +1,12 @@
-import { BaseSyntheticEvent, FC, useState } from "react";
+import { ChangeEventHandler, FC } from "react";
 import { FiSearch } from "react-icons/fi";
+import debounce from "lodash.debounce";
 
-export const Searchbar: FC = () => {
-  const [search, setSearch] = useState<string>();
+interface Props {
+  handler: ChangeEventHandler;
+}
 
-  const handleSearch = (e: BaseSyntheticEvent) => setSearch(e.target.value);
-
+export const Searchbar: FC<Props> = ({ handler }) => {
   return (
     <form className="flex justify-center">
       <label className="relative">
@@ -15,7 +16,7 @@ export const Searchbar: FC = () => {
         />
         <input
           type="text"
-          onChange={handleSearch}
+          onChange={debounce(handler, 500)}
           placeholder="Search track/artist"
           className="bg-dark text-gray h-16 w-[800px] rounded-xl pl-12 pr-3.5 focus:outline-0"
         />

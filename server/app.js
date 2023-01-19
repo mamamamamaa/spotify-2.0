@@ -54,7 +54,7 @@ app.post("/login", (req, res) => {
       });
     })
     .catch((err) => {
-      res.sendStatus(400).json({ err });
+      res.sendStatus(400);
     });
 });
 
