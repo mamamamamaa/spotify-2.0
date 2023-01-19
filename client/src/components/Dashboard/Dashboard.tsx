@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import { Searchbar } from "../Searchbar/Searchbar";
 interface Props {
   code: string;
 }
@@ -7,6 +8,9 @@ interface Props {
 export const Dashboard: FC<Props> = ({ code }) => {
   const authTest = useAuth(code);
 
-  console.log(authTest);
-  return <h1>{code}</h1>;
+  return (
+    <>
+      <Searchbar />
+    </>
+  );
 };
