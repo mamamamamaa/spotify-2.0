@@ -10,9 +10,11 @@ export const useAuth = (code: string) => {
   useEffect(() => {
     axios
       .post(address, { code })
-      .then((data) => console.log(data))
-      .catch(() => {
-        console.log("error");
+      .then((data) => {
+        console.log(data);
+        window.history.pushState({}, "", "/");
+      })
+      .catch((error) => {
         // @ts-ignore
         window.location = "/";
       });
