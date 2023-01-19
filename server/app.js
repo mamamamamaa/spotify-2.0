@@ -14,6 +14,28 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(logger(formatsLogger));
 
+app.post("/refresh", (req, res) => {
+  const { refreshToken } = req.body;
+
+  const spotifyApi = new SpotifyWebApi({
+    redirectUri: REDIRECT_URI,
+    clientId: CLIENT_ID,
+    clientSecret: CLIENT_SECRET,
+    refreshToken,
+  });
+
+  spotifyApi
+    .refreshAccessToken()
+    .then(({ body }) => {
+      res
+        .status(201)
+        .json({ accessToken: body.accessToken, expiresIn: body.expiresIn });
+    })
+    .catch((error) => {
+      res.status(400).json(error);
+    });
+});
+
 app.post("/login", (req, res) => {
   const { code } = req.body;
   const spotifyApi = new SpotifyWebApi({
