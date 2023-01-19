@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 export const useAuth = (code: string) => {
   const { REACT_APP_SERVER_HOST: address = "/" } = process.env;

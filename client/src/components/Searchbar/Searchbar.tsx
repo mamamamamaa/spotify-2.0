@@ -11,6 +11,7 @@ export const Searchbar: FC = () => {
         type="text"
         onChange={handleSearch}
         placeholder="Search track/artist"
+        className="bg-dark text-gray h-16 w-96 rounded-xl px-2 focus:outline-0 m-12"
       />
     </>
   );
