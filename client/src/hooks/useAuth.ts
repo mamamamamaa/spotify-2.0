@@ -9,7 +9,7 @@ export const useAuth = (code: string) => {
 
   useEffect(() => {
     axios
-      .post(`${address}/login`, { code })
+      .post(`${address}/auth/login`, { code })
       .then(({ data }) => {
         setAccessToken(data.accessToken);
         setRefreshToken(data.refreshToken);
@@ -29,7 +29,7 @@ export const useAuth = (code: string) => {
 
     const interval = setInterval(() => {
       axios
-        .post(`${address}/refresh`, { refreshToken })
+        .post(`${address}/auth/refresh`, { refreshToken })
         .then(({ data }) => {
           setAccessToken(data.accessToken);
           setExpiresIn(data.expiresIn);
