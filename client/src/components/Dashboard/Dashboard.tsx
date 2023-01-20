@@ -43,8 +43,18 @@ export const Dashboard: FC<Props> = ({ code }) => {
         body: { tracks },
       } = await spotifyApi.searchTracks(search);
 
-      // TODO: finish part with music list
-      // const results = tracks?.items.map(({ id, name }) => {});
+      const results = tracks?.items.map(
+        ({ id, name, uri, artists, album: { images } }) => {
+          if (images.length > 0) {
+            const cover = images.reduce(
+              (acc = 0, { height = 0 }) => (acc > height ? height : acc),
+              images[0].height
+            );
+          }
+
+          return { id, name, uri, artist: artists[0] };
+        }
+      );
     };
 
     searchTracks();

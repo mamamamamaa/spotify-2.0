@@ -19,16 +19,6 @@ const refresh = async (req, res, next) => {
   } catch (error) {
     res.status(401).json({ error });
   }
-  // spotifyApi
-  //   .refreshAccessToken()
-  //   .then(({ body }) => {
-  //     res
-  //       .status(201)
-  //       .json({ accessToken: body.accessToken, expiresIn: body.expiresIn });
-  //   })
-  //   .catch((error) => {
-  //     res.status(400).json(error);
-  //   });
 };
 
 const login = async (req, res, next) => {
@@ -49,19 +39,6 @@ const login = async (req, res, next) => {
   } catch (error) {
     res.status(401).json({ error });
   }
-
-  // spotifyApi
-  //   .authorizationCodeGrant(code)
-  //   .then((data) => {
-  //     res.status(200).json({
-  //       accessToken: data.body.access_token,
-  //       refreshToken: data.body.refresh_token,
-  //       expiresIn: data.body.expires_in,
-  //     });
-  //   })
-  //   .catch((err) => {
-  //     res.status(401).json({ error });
-  //   });
 };
 
 module.exports = { login, refresh };

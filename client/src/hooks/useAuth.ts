@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 
 export const useAuth = (code: string) => {
   const { REACT_APP_SERVER_HOST: address = "/" } = process.env;
-  const [accessToken, setAccessToken] = useState();
-  const [refreshToken, setRefreshToken] = useState();
-  const [expiresIn, setExpiresIn] = useState();
+  const [accessToken, setAccessToken] = useState<string>("");
+  const [refreshToken, setRefreshToken] = useState<string>("");
+  const [expiresIn, setExpiresIn] = useState<number>();
 
   useEffect(() => {
     axios
