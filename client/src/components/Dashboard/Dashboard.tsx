@@ -3,6 +3,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { Searchbar } from "../Searchbar/Searchbar";
 import { SongsList } from "../SongsList/SongsList";
 import SpotifyWeApi from "spotify-web-api-node";
+import { Search } from "../../interfaces/intesfaces";
 
 interface Props {
   code: string;
@@ -13,13 +14,13 @@ const { REACT_APP_CLIENT_ID: clientId } = process.env;
 const spotifyApi = new SpotifyWeApi({
   clientId,
 });
+const NO_COVER =
+  "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ANo_cover.JPG&psig=AOvVaw17nPxRIKb5bGQlaEo68ZzB&ust=1674314482495000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCJjpldG51vwCFQAAAAAdAAAAABAE";
 
 export const Dashboard: FC<Props> = ({ code }) => {
   const { accessToken } = useAuth(code);
-  console.log(accessToken);
-  const songs = [{ id: 12, name: "Lala" }];
   const [search, setSearch] = useState<string>("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<Search[]>([]);
   const handleSearch = (e: BaseSyntheticEvent) => setSearch(e.target.value);
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export const Dashboard: FC<Props> = ({ code }) => {
   }, [accessToken]);
 
   useEffect(() => {
-    if (!searchResults) {
+    if (!searchResults || !search) {
       return setSearchResults([]);
     }
 
@@ -44,17 +45,31 @@ export const Dashboard: FC<Props> = ({ code }) => {
       } = await spotifyApi.searchTracks(search);
 
       const results = tracks?.items.map(
-        ({ id, name, uri, artists, album: { images } }) => {
-          if (images.length > 0) {
-            const cover = images.reduce(
-              (acc = 0, { height = 0 }) => (acc > height ? height : acc),
-              images[0].height
+        ({ id, name, uri, artists, album: { images, name: albumName } }) => {
+          let cover = NO_COVER;
+
+          if (images && images.length > 0 && images[0].height) {
+            const sortedImages = [...images].sort(
+              ({ height: a = 0 }, { height: b = 0 }) => a - b
             );
+
+            cover = sortedImages[0].url;
           }
 
-          return { id, name, uri, artist: artists[0] };
+          return {
+            id,
+            name,
+            uri,
+            artist: artists[0].name,
+            cover,
+            albumName,
+          };
         }
       );
+
+      if (results) {
+        setSearchResults(results);
+      }
     };
 
     searchTracks();
@@ -63,7 +78,7 @@ export const Dashboard: FC<Props> = ({ code }) => {
   return (
     <>
       <Searchbar handler={handleSearch} />
-      <SongsList list={songs} />
+      <SongsList list={searchResults} />
     </>
   );
 };

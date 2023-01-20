@@ -18,7 +18,7 @@ export const Searchbar: FC<Props> = ({ handler }) => {
           type="text"
           onChange={debounce(handler, 500)}
           placeholder="Search track/artist"
-          className="bg-dark text-gray h-16 w-[800px] rounded-xl pl-12 pr-3.5 focus:outline-0"
+          className="bg-dark text-gray h-16 w-[1000px] rounded-xl pl-12 pr-3.5 focus:outline-0"
         />
       </label>
     </form>
