@@ -1,6 +1,8 @@
 import { FC } from "react";
 import { Search } from "../../interfaces/intesfaces";
 import { SongCard } from "../SongCard/SongCard";
+// @ts-ignore
+import style from "./SongList.module.css";
 
 interface Props {
   list: Search[];
@@ -8,7 +10,7 @@ interface Props {
 
 export const SongsList: FC<Props> = ({ list }) => {
   return (
-    <ul className="flex flex-col gap-4 mt-5 h-[65vh] overflow-y-scroll">
+    <ul className={style.list}>
       {list.map(({ id, name, cover, albumName, artist }) => (
         <li key={id}>
           <SongCard
