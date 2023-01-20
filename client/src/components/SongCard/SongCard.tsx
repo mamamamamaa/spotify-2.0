@@ -9,7 +9,7 @@ interface Props {
 
 export const SongCard: FC<Props> = ({ cover, name, artist, albumName }) => {
   return (
-    <div className="flex items-center h-16 cursor-pointer hover:drop-shadow-xl">
+    <div className="flex items-center h-16 cursor-pointer hover:scale-99">
       <img src={cover} alt={albumName} className="h-16 w-16" />
       <div className="flex flex-col ml-3">
         <span className="text-white text-2xl">{name}</span>

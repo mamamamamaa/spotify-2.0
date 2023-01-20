@@ -7,6 +7,9 @@ module.exports = {
       fontFamily: {
         sans: ["Open Sans", ...defaultTheme.fontFamily.sans],
       },
+      scale: {
+        99: "0.995",
+      },
     },
     colors: {
       dark: "#282828",
