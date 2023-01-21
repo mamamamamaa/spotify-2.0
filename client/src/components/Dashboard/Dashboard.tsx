@@ -4,6 +4,7 @@ import { Searchbar } from "../Searchbar/Searchbar";
 import { SongsList } from "../SongsList/SongsList";
 import SpotifyWeApi from "spotify-web-api-node";
 import { Search } from "../../interfaces/intesfaces";
+import { Playback } from "../Playback/Playback";
 
 interface Props {
   code: string;
@@ -19,8 +20,11 @@ const NO_COVER =
 
 export const Dashboard: FC<Props> = ({ code }) => {
   const { accessToken } = useAuth(code);
+
   const [search, setSearch] = useState<string>("");
   const [searchResults, setSearchResults] = useState<Search[]>([]);
+  const [currentTrack, setCurrentTrack] = useState<string>("");
+
   const handleSearch = (e: BaseSyntheticEvent) => setSearch(e.target.value);
 
   useEffect(() => {
@@ -78,7 +82,8 @@ export const Dashboard: FC<Props> = ({ code }) => {
   return (
     <>
       <Searchbar handler={handleSearch} />
-      <SongsList list={searchResults} />
+      <SongsList list={searchResults} setCurrentTrack={setCurrentTrack} />
+      <Playback token={accessToken} uri={currentTrack} />
     </>
   );
 };

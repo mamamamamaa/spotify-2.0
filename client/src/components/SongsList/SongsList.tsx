@@ -6,13 +6,14 @@ import style from "./SongList.module.css";
 
 interface Props {
   list: Search[];
+  setCurrentTrack: Function;
 }
 
-export const SongsList: FC<Props> = ({ list }) => {
+export const SongsList: FC<Props> = ({ list, setCurrentTrack }) => {
   return (
     <ul className={style.list}>
-      {list.map(({ id, name, cover, albumName, artist }) => (
-        <li key={id}>
+      {list.map(({ id, name, cover, albumName, artist, uri }) => (
+        <li key={id} onClick={() => setCurrentTrack(uri)}>
           <SongCard
             cover={cover}
             name={name}
