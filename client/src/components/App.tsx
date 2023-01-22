@@ -2,7 +2,6 @@ import { FC } from "react";
 import { Login } from "./Login/Login";
 import { Dashboard } from "./Dashboard/Dashboard";
 import { Layout } from "./Layout/Layout";
-import { useStorage } from "../hooks/useStorage";
 
 // @ts-ignore
 import Logo from "../icons/Logo.svg";
