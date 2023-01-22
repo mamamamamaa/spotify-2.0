@@ -1,7 +1,6 @@
 const STORAGE_KEY = "code";
 
 export const useStorage = () => {
-  console.log("hook");
   const storageCode = localStorage.getItem(STORAGE_KEY);
 
   if (storageCode) {
