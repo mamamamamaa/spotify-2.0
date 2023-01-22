@@ -11,7 +11,6 @@ const code = new URLSearchParams(window.location.search).get("code");
 
 export const App: FC = () => {
   const { REACT_APP_AUTH_URL } = process.env;
-  // const code = useStorage();
   return (
     <Layout>
       <img src={Logo} alt="Spotify logo" className="mx-auto my-5" />
