@@ -10,5 +10,15 @@ export const Playback: FC<Props> = ({ token, uri }) => {
   if (!token) {
     return null;
   }
-  return <SpotifyWebPlayer token={token} uris={uri ? uri : []} />;
+  return (
+    <div>
+      <SpotifyWebPlayer
+        token={token}
+        uris={uri ? uri : []}
+        autoPlay={true}
+        initialVolume={0.5}
+        styles={{}}
+      />
+    </div>
+  );
 };
