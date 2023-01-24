@@ -11,14 +11,32 @@ export const Playback: FC<Props> = ({ token, uri }) => {
     return null;
   }
   return (
-    <div>
-      <SpotifyWebPlayer
-        token={token}
-        uris={uri ? uri : []}
-        autoPlay={true}
-        initialVolume={0.5}
-        styles={{}}
-      />
+    <div className="fixed bottom-0 left-0 w-screen flex">
+      {uri && (
+        <SpotifyWebPlayer
+          token={token}
+          uris={uri ? uri : []}
+          autoPlay={true}
+          play={true}
+          initialVolume={0.5}
+          styles={{
+            bgColor: "#282828",
+            activeColor: "#57B65F",
+            altColor: "#B3B3B3",
+            color: "#FFFFFF",
+            height: 65,
+            loaderColor: "#57B65F",
+            sliderColor: "#FFFFFF",
+            sliderHandleBorderRadius: 100,
+            sliderHandleColor: "#FFFFFF",
+            sliderHeight: 5,
+            sliderTrackBorderRadius: 100,
+            sliderTrackColor: "#B3B3B3",
+            trackArtistColor: "#B3B3B3",
+            trackNameColor: "#FFFFFF",
+          }}
+        />
+      )}
     </div>
   );
 };
