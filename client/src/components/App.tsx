@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Login } from "./Login/Login";
 import { Dashboard } from "./Dashboard/Dashboard";
 import { Layout } from "./Layout/Layout";
@@ -8,6 +8,7 @@ const code = new URLSearchParams(window.location.search).get("code");
 
 export const App: FC = () => {
   const { REACT_APP_AUTH_URL } = process.env;
+
   return (
     <Layout>
       <Logo />

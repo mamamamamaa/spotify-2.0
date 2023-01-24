@@ -6,3 +6,9 @@ export interface Search {
   cover: string;
   albumName: string;
 }
+
+export interface CurrentTrack {
+  uri: string;
+  artist: string;
+  title: string;
+}

@@ -14,6 +14,7 @@ const songsRoute = require("./routes/song");
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger(formatsLogger));
 
 app.use("/auth", authRoute);
