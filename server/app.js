@@ -10,11 +10,13 @@ const { PORT } = process.env;
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
 const authRoute = require("./routes/auth");
+const songsRoute = require("./routes/song");
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(logger(formatsLogger));
 
 app.use("/auth", authRoute);
+app.use("/songs", songsRoute);
 
 app.listen(PORT, () => console.log(`Server is running on the ${PORT} port`));
