@@ -1,9 +1,11 @@
 import { FC } from "react";
+// @ts-ignore
+import style from "./Lyrics.module.css";
 
 interface Props {
   text: string;
 }
 
 export const Lyrics: FC<Props> = ({ text }) => {
-  return <p className="whitespace-pre mt-5 text-3xl">{text}</p>;
+  return <p className={style.lyricsContainer}>{text}</p>;
 };

@@ -1,0 +1,3 @@
+.lyricsContainer{
+    @apply whitespace-pre mt-5 text-3xl;
+}
