@@ -5,8 +5,8 @@ import { SongsList } from "../SongsList/SongsList";
 import SpotifyWeApi from "spotify-web-api-node";
 import { CurrentTrack, Search } from "../../interfaces/intesfaces";
 import { Playback } from "../Playback/Playback";
-import axios from "axios";
 import { Lyrics } from "../Lyrics/Lyrics";
+import { useCurrentTrack } from "../../hooks/useCurrentTrack";
 
 interface Props {
   code: string;
@@ -25,8 +25,9 @@ export const Dashboard: FC<Props> = ({ code }) => {
 
   const [search, setSearch] = useState<string>("");
   const [searchResults, setSearchResults] = useState<Search[]>([]);
-  const [currentTrack, setCurrentTrack] = useState<CurrentTrack>();
+  // const [currentTrack, setCurrentTrack] = useState<CurrentTrack>();
   const [lyrics, setLyrics] = useState<string>("");
+  const [currentTrack, setCurrentTrack] = useCurrentTrack(setLyrics);
 
   const handleSearch = (e: BaseSyntheticEvent) => setSearch(e.target.value);
 
@@ -36,33 +37,6 @@ export const Dashboard: FC<Props> = ({ code }) => {
     }
     spotifyApi.setAccessToken(accessToken);
   }, [accessToken]);
-
-  useEffect(() => {
-    if (!currentTrack) {
-      return;
-    }
-    const getLyrics = async () => {
-      const { title, artist } = currentTrack;
-      try {
-        const {
-          data: { lyrics },
-        } = await axios.get("http://localhost:3001/songs/lyrics", {
-          params: {
-            artist,
-            title,
-          },
-        });
-
-        setLyrics(lyrics);
-      } catch (e) {
-        if (e instanceof Error) {
-          throw Error(e.message);
-        }
-      }
-    };
-
-    getLyrics();
-  }, [currentTrack]);
 
   useEffect(() => {
     if (!searchResults || !search) {
@@ -108,6 +82,7 @@ export const Dashboard: FC<Props> = ({ code }) => {
 
     searchTracks();
   }, [search, accessToken]);
+
   return (
     <>
       <Searchbar handler={handleSearch} />
