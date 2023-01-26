@@ -1,36 +1,31 @@
-import { FC, Suspense, useContext } from "react";
+import { FC } from "react";
 import { Searchbar } from "../Searchbar/Searchbar";
 import { Playback } from "../Playback/Playback";
-import { useCurrentTrack } from "../../hooks/useCurrentTrack";
 import { useSpotify } from "../../hooks/useSpotify";
-import { Outlet } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { SongsList } from "../SongsList/SongsList";
+import { Lyrics } from "../Lyrics/Lyrics";
+import { useSearchTrack } from "../../hooks/useSearchTrack";
+import { useCurrentTrack } from "../../hooks/useCurrentTrack";
 
 interface Props {
   code: string;
 }
 
 export const Dashboard: FC<Props> = ({ code }) => {
-  const accessToken = us;
+  const accessToken = useAuth(code);
   useSpotify(accessToken);
 
-  const { currentTrack } = useCurrentTrack();
+  const { setSearch, searchResults } = useSearchTrack(accessToken);
+  const { currentTrack, setCurrentTrack, lyrics } = useCurrentTrack();
 
   return (
     <>
-      <Searchbar />
-      <div className="flex justify-between mt-10">
-        {/*{searchResults.length > 0 && (*/}
-        {/*  <SongsList list={searchResults} setCurrentTrack={setCurrentTrack} />*/}
-        {/*)}*/}
-        {/*{currentTrack && <Lyrics text={lyrics} />}*/}
-        <Suspense fallback={null}>
-          <Outlet />
-        </Suspense>
-      </div>
+      <Searchbar setSearch={setSearch} />
+      <SongsList setCurrentTrack={setCurrentTrack} list={searchResults} />
+      <Lyrics lyrics={lyrics} />
 
-      {currentTrack && (
-        <Playback token={accessToken} currentTrack={currentTrack} />
-      )}
+      <Playback token={accessToken} currentTrack={currentTrack} />
     </>
   );
 };

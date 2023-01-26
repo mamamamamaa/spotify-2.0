@@ -18,7 +18,7 @@ export const useAuth = (code: string) => {
       })
       .catch((error) => {
         // @ts-ignore
-        // window.location = "/login";
+        window.location = "/login";
       });
   }, [code]);
 

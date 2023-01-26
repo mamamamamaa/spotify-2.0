@@ -1,12 +1,12 @@
-import { BaseSyntheticEvent, ChangeEventHandler, FC, useContext } from "react";
+import { BaseSyntheticEvent, FC } from "react";
 import { FiSearch } from "react-icons/fi";
 import debounce from "lodash.debounce";
-import { useSearchTrack } from "../../hooks/useSearchTrack";
-import { Context } from "../App";
 
-export const Searchbar: FC = () => {
-  const token = useContext(Context);
-  const { setSearch } = useSearchTrack(token);
+interface Props {
+  setSearch: Function;
+}
+
+export const Searchbar: FC<Props> = ({ setSearch }) => {
   const handleSearch = (e: BaseSyntheticEvent) => setSearch(e.target.value);
 
   return (

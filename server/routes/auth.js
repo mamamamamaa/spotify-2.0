@@ -3,8 +3,8 @@ const { login, refresh } = require("../controllers/auth");
 
 const route = express.Router();
 
-route.post("/refresh", refresh);
-
 route.post("/login", login);
+
+route.post("/refresh", refresh);
 
 module.exports = route;
