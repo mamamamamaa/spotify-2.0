@@ -1,11 +1,9 @@
 import { FC } from "react";
 // @ts-ignore
 import style from "./Lyrics.module.css";
+import { useCurrentTrack } from "../../hooks/useCurrentTrack";
 
-interface Props {
-  text: string;
-}
-
-export const Lyrics: FC<Props> = ({ text }) => {
-  return <p className={style.lyricsContainer}>{text}</p>;
+export const Lyrics: FC = () => {
+  const { lyrics } = useCurrentTrack();
+  return <p className={style.lyricsContainer}>{lyrics}</p>;
 };

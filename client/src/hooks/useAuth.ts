@@ -18,7 +18,7 @@ export const useAuth = (code: string) => {
       })
       .catch((error) => {
         // @ts-ignore
-        window.location = "/";
+        // window.location = "/login";
       });
   }, [code]);
 
@@ -36,12 +36,12 @@ export const useAuth = (code: string) => {
         })
         .catch((error) => {
           // @ts-ignore
-          window.location = "/";
+          window.location = "/login";
         });
     }, (expiresIn - 60) * 1000);
 
     return () => clearInterval(interval);
   }, [refreshToken, expiresIn]);
 
-  return { accessToken };
+  return accessToken;
 };

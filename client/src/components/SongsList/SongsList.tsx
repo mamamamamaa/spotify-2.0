@@ -1,15 +1,16 @@
-import { FC } from "react";
-import { Search } from "../../interfaces/intesfaces";
+import { FC, useContext } from "react";
+import { Context } from "../App";
 import { SongCard } from "../SongCard/SongCard";
+import { useSearchTrack } from "../../hooks/useSearchTrack";
+import { useCurrentTrack } from "../../hooks/useCurrentTrack";
 // @ts-ignore
 import style from "./SongList.module.css";
 
-interface Props {
-  list: Search[];
-  setCurrentTrack: Function;
-}
+export const SongsList: FC = () => {
+  const token = useContext(Context);
+  const { searchResults: list } = useSearchTrack(token);
+  const { setCurrentTrack } = useCurrentTrack();
 
-export const SongsList: FC<Props> = ({ list, setCurrentTrack }) => {
   return (
     <ul className={style.list}>
       {list.map(({ id, name, cover, albumName, artist, uri }) => (
