@@ -7,7 +7,7 @@ export const LoginPage: FC = () => {
 
   return (
     <div className="container px-12 py-2 pb-[80px] mx-auto">
-      <Logo />
+      <Logo type="login" />
       <Login link={REACT_APP_AUTH_URL} />
     </div>
   );

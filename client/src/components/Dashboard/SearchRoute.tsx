@@ -15,9 +15,9 @@ export const SearchRoute: FC<Props> = ({
   setCurrentTrack,
 }) => {
   return (
-    <>
+    <div className="w-full">
       <Searchbar setSearch={setSearch} />
       <SongsList setCurrentTrack={setCurrentTrack} list={searchResults} />
-    </>
+    </div>
   );
 };

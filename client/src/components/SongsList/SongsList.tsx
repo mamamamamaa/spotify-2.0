@@ -1,8 +1,7 @@
 import { FC } from "react";
 import { SongCard } from "../SongCard/SongCard";
-// @ts-ignore
-import style from "./SongList.module.css";
 import { Search } from "../../interfaces/intesfaces";
+import style from "./SongList.module.css";
 
 interface Props {
   list: Search[];

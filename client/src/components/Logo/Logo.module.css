@@ -1,3 +1,7 @@
-.logo{
+.loginLogo{
     @apply mx-auto my-5 w-[70px];
+}
+
+.dashboardLogo{
+    @apply mb-6 w-[70px];
 }

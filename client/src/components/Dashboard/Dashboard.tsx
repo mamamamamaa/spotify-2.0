@@ -28,10 +28,6 @@ export const Dashboard: FC<Props> = ({ code }) => {
 
   return (
     <>
-      <nav className="flex flec-col">
-        <Link to="/lyrics">To Lyrics</Link>
-        <Link to="/">To Songs</Link>
-      </nav>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route

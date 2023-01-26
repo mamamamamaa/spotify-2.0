@@ -1,0 +1,15 @@
+.layoutContainer{
+    @apply container flex px-5 py-7 pb-[80px] mx-auto gap-5
+}
+
+.sidebar{
+    @apply w-[50px]
+}
+
+.linkList{
+    @apply flex items-center gap-5 flex-col
+}
+
+.linkIcon{
+    @apply hover:text-gray
+}

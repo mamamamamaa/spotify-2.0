@@ -1,5 +1,5 @@
 .list{
-    @apply flex flex-col gap-4 mt-5 h-[68vh] overflow-y-scroll;
+    @apply flex flex-col gap-4 mt-5 h-[76vh] overflow-y-scroll;
 }
 
 .list::-webkit-scrollbar{

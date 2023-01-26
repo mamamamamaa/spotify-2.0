@@ -1,5 +1,4 @@
 import { FC } from "react";
-// @ts-ignore
 import style from "./Lyrics.module.css";
 
 interface Props {
