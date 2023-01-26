@@ -7,7 +7,7 @@ export const spotifyApi = new SpotifyWeApi({
   clientId,
 });
 
-export const useSpotify = (token: string): void => {
+export const useSpotify = (token: string | undefined): void => {
   useEffect(() => {
     if (!token) {
       return;

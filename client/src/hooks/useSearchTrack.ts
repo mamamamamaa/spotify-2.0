@@ -5,7 +5,7 @@ import { spotifyApi } from "./useSpotify";
 const NO_COVER =
   "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ANo_cover.JPG&psig=AOvVaw17nPxRIKb5bGQlaEo68ZzB&ust=1674314482495000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCJjpldG51vwCFQAAAAAdAAAAABAE";
 
-export const useSearchTrack = (token: string) => {
+export const useSearchTrack = (token: string | undefined) => {
   const [search, setSearch] = useState<string>("");
   const [searchResults, setSearchResults] = useState<Search[]>([]);
 

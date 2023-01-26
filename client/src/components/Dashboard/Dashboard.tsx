@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { Playback } from "../Playback/Playback";
 import {
   useAuth,
   useSearchTrack,
@@ -26,7 +25,12 @@ export const Dashboard: FC<Props> = ({ code }) => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route
+          path="/"
+          element={
+            <Layout currentTrack={currentTrack} accessToken={accessToken} />
+          }
+        >
           <Route
             index
             element={
@@ -37,11 +41,11 @@ export const Dashboard: FC<Props> = ({ code }) => {
               />
             }
           />
+          <Route path="/lyrics" element={<LyricsRoute lyrics={lyrics} />} />
         </Route>
-        <Route path="/lyrics" element={<LyricsRoute lyrics={lyrics} />} />
       </Routes>
 
-      <Playback token={accessToken} currentTrack={currentTrack} />
+      {/*<Playback token={accessToken} currentTrack={currentTrack} />*/}
     </>
   );
 };

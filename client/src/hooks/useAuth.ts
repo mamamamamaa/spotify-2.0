@@ -8,6 +8,10 @@ export const useAuth = (code: string) => {
   const [expiresIn, setExpiresIn] = useState<number>();
 
   useEffect(() => {
+    if (!code) {
+      return;
+    }
+
     axios
       .post(`${address}/auth/login`, { code })
       .then(({ data }) => {

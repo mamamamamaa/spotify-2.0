@@ -6,8 +6,15 @@ import { FiSearch, FiHeart } from "react-icons/fi";
 import { TbMicrophone2 } from "react-icons/tb";
 
 import style from "./Layout.module.css";
+import { Playback } from "../Playback/Playback";
+import { CurrentTrack } from "../../interfaces/intesfaces";
 
-export const Layout: FC = () => {
+interface Props {
+  accessToken: string;
+  currentTrack: CurrentTrack | undefined;
+}
+
+export const Layout: FC<Props> = ({ currentTrack, accessToken }) => {
   return (
     <div className={style.layoutContainer}>
       <div className={style.sidebar}>
@@ -28,6 +35,7 @@ export const Layout: FC = () => {
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
+      <Playback token={accessToken} currentTrack={currentTrack} />
     </div>
   );
 };

@@ -6,5 +6,6 @@ interface Props {
 }
 
 export const LyricsRoute: FC<Props> = ({ lyrics }) => {
+  console.log(lyrics);
   return <Lyrics lyrics={lyrics} />;
 };
