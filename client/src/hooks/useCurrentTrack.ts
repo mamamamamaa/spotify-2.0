@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CurrentTrack } from "../interfaces/intesfaces";
 import axios from "axios";
 
-export const useCurrentTrack = (
-  setLyrics: React.Dispatch<React.SetStateAction<string>>
-): [CurrentTrack | undefined, Function] => {
+export const useCurrentTrack = (): [
+  string,
+  CurrentTrack | undefined,
+  Function
+] => {
   const [currentTrack, setCurrentTrack] = useState<CurrentTrack>();
-
+  const [lyrics, setLyrics] = useState<string>("");
   useEffect(() => {
     if (!currentTrack) {
       return;
@@ -34,5 +36,5 @@ export const useCurrentTrack = (
     getLyrics();
   }, [currentTrack]);
 
-  return [currentTrack, setCurrentTrack];
+  return [lyrics, currentTrack, setCurrentTrack];
 };

@@ -1,101 +1,73 @@
-import { BaseSyntheticEvent, FC, useEffect, useState } from "react";
+import { BaseSyntheticEvent, FC, ReactNode } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { Searchbar } from "../Searchbar/Searchbar";
 import { SongsList } from "../SongsList/SongsList";
-import SpotifyWeApi from "spotify-web-api-node";
-import { CurrentTrack, Search } from "../../interfaces/intesfaces";
 import { Playback } from "../Playback/Playback";
 import { Lyrics } from "../Lyrics/Lyrics";
 import { useCurrentTrack } from "../../hooks/useCurrentTrack";
+import { useSpotify } from "../../hooks/useSpotify";
+import { useSearchTrack } from "../../hooks/useSearchTrack";
+import { Link, Outlet, Route, Routes } from "react-router-dom";
 
 interface Props {
   code: string;
 }
 
-const { REACT_APP_CLIENT_ID: clientId } = process.env;
-
-const spotifyApi = new SpotifyWeApi({
-  clientId,
-});
-const NO_COVER =
-  "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ANo_cover.JPG&psig=AOvVaw17nPxRIKb5bGQlaEo68ZzB&ust=1674314482495000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCJjpldG51vwCFQAAAAAdAAAAABAE";
+function Suspense(props: { fallback: null; children: ReactNode }) {
+  return null;
+}
 
 export const Dashboard: FC<Props> = ({ code }) => {
   const { accessToken } = useAuth(code);
 
-  const [search, setSearch] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<Search[]>([]);
-  // const [currentTrack, setCurrentTrack] = useState<CurrentTrack>();
-  const [lyrics, setLyrics] = useState<string>("");
-  const [currentTrack, setCurrentTrack] = useCurrentTrack(setLyrics);
+  useSpotify(accessToken);
+
+  const { setSearch, searchResults } = useSearchTrack(accessToken);
+  const [lyrics, currentTrack, setCurrentTrack] = useCurrentTrack();
 
   const handleSearch = (e: BaseSyntheticEvent) => setSearch(e.target.value);
-
-  useEffect(() => {
-    if (!accessToken) {
-      return;
-    }
-    spotifyApi.setAccessToken(accessToken);
-  }, [accessToken]);
-
-  useEffect(() => {
-    if (!searchResults || !search) {
-      return setSearchResults([]);
-    }
-
-    if (!accessToken || !search) {
-      return;
-    }
-
-    const searchTracks = async () => {
-      const {
-        body: { tracks },
-      } = await spotifyApi.searchTracks(search);
-
-      const results = tracks?.items.map(
-        ({ id, name, uri, artists, album: { images, name: albumName } }) => {
-          let cover = NO_COVER;
-
-          if (images && images.length > 0 && images[0].height) {
-            const sortedImages = [...images].sort(
-              ({ height: a = 0 }, { height: b = 0 }) => a - b
-            );
-
-            cover = sortedImages[0].url;
-          }
-
-          return {
-            id,
-            name,
-            uri,
-            artist: artists[0].name,
-            cover,
-            albumName,
-          };
-        }
-      );
-
-      if (results) {
-        setSearchResults(results);
-      }
-    };
-
-    searchTracks();
-  }, [search, accessToken]);
 
   return (
     <>
       <Searchbar handler={handleSearch} />
-      <div className="flex justify-between mt-10">
-        {searchResults.length > 0 && (
-          <SongsList list={searchResults} setCurrentTrack={setCurrentTrack} />
-        )}
-        {currentTrack && <Lyrics text={lyrics} />}
+      <div>
+        <ul>
+          <Link to="/">Tracks</Link>
+          <Link to="/lyrics">Lyrics</Link>
+        </ul>
       </div>
-
+      <Routes>
+        <Route
+          path="/"
+          element={
+            searchResults.length > 0 && (
+              <SongsList
+                list={searchResults}
+                setCurrentTrack={setCurrentTrack}
+              />
+            )
+          }
+        />
+        <Route
+          path="/lyrics"
+          element={currentTrack && <Lyrics text={lyrics} />}
+        />
+      </Routes>
       {currentTrack && (
         <Playback token={accessToken} currentTrack={currentTrack} />
       )}
+
+      {/*<Searchbar handler={handleSearch} />*/}
+      {/*<div className="flex justify-between mt-10">*/}
+      {/*  {searchResults.length > 0 && (*/}
+      {/*    <SongsList list={searchResults} setCurrentTrack={setCurrentTrack} />*/}
+      {/*  )}*/}
+      {/*  {currentTrack && <Lyrics text={lyrics} />}*/}
+      {/*</div>*/}
+
+      {/*{currentTrack && (*/}
+      {/*  <Playback token={accessToken} currentTrack={currentTrack} />*/}
+      {/*)}*/}
     </>
   );
 };
