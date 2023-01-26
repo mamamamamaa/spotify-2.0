@@ -1,8 +1,5 @@
 import { FC } from "react";
-import { Searchbar } from "../Searchbar/Searchbar";
 import { Playback } from "../Playback/Playback";
-import { SongsList } from "../SongsList/SongsList";
-import { Lyrics } from "../Lyrics/Lyrics";
 import {
   useAuth,
   useSearchTrack,
@@ -11,7 +8,7 @@ import {
 } from "../../hooks";
 
 import { Layout } from "../Layout/Layout";
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { SearchRoute } from "./SearchRoute";
 import { LyricsRoute } from "./LyricsRoute";
 
