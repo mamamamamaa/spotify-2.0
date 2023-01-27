@@ -1,8 +1,6 @@
 import { createContext, FC } from "react";
-import { LoginPage } from "../Pages";
+import { LoginPage, LyricsPage, SearchPage, SavedTracksPage } from "../pages";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { SearchPage } from "../Pages/SearchPage";
-import { LyricsPage } from "../Pages/LyricsPage";
 import { useAuth, useCurrentTrack, useSearchTrack, useSpotify } from "../hooks";
 import { Layout } from "./Layout/Layout";
 
@@ -51,6 +49,7 @@ export const App: FC = () => {
               )
             }
           />
+          <Route path="/saved" element={<SavedTracksPage />} />
         </Route>
       </Routes>
     </TokenContext.Provider>

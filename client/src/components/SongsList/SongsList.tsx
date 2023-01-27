@@ -1,9 +1,7 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { SongCard } from "../SongCard/SongCard";
 import { Search } from "../../interfaces/intesfaces";
 import style from "./SongList.module.css";
-import { useSaveTrack } from "../../hooks/useSaveTrack";
-import { spotifyApi } from "../../hooks";
 
 interface Props {
   list: Search[];

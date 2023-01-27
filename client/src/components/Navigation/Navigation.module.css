@@ -1,0 +1,11 @@
+.linkList{
+    @apply flex items-center gap-5 flex-col
+}
+
+.linkIcon{
+    @apply hover:text-gray
+}
+
+.focus{
+    @apply text-green;
+}
