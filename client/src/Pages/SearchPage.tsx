@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { Searchbar } from "../Searchbar/Searchbar";
-import { SongsList } from "../SongsList/SongsList";
-import { Search } from "../../interfaces/intesfaces";
+import { Searchbar } from "../components/Searchbar/Searchbar";
+import { SongsList } from "../components/SongsList/SongsList";
+import { Search } from "../interfaces/intesfaces";
 
 interface Props {
   setSearch: Function;
@@ -9,7 +9,7 @@ interface Props {
   searchResults: Search[];
 }
 
-export const SearchRoute: FC<Props> = ({
+export const SearchPage: FC<Props> = ({
   searchResults,
   setSearch,
   setCurrentTrack,

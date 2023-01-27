@@ -18,7 +18,7 @@ export const Playback: FC<Props> = ({ token, currentTrack }) => {
         <div className="fixed bottom-0 left-0 w-screen flex">
           <SpotifyWebPlayer
             token={token}
-            uris={currentTrack.uri}
+            uris={currentTrack?.uri}
             autoPlay={true}
             play={true}
             initialVolume={0.5}

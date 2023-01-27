@@ -3,7 +3,7 @@
 }
 
 .sidebar{
-    @apply w-[50px]
+    @apply flex items-center flex-col w-[70px]
 }
 
 .linkList{
@@ -12,4 +12,8 @@
 
 .linkIcon{
     @apply hover:text-gray
+}
+
+.focus{
+    @apply text-green;
 }

@@ -13,19 +13,23 @@ export const SongsList: FC<Props> = ({ list, setCurrentTrack }) => {
     <>
       {list.length > 0 && (
         <ul className={style.list}>
-          {list.map(({ id, name, cover, albumName, artist, uri }) => (
-            <li
-              key={id}
-              onClick={() => setCurrentTrack({ uri, artist, title: name })}
-            >
-              <SongCard
-                cover={cover}
-                name={name}
-                artist={artist}
-                albumName={albumName}
-              />
-            </li>
-          ))}
+          {list.map(
+            ({ id, name, cover, albumName, artist, uri, hugeCover }) => (
+              <li
+                key={id}
+                onClick={() =>
+                  setCurrentTrack({ uri, artist, title: name, hugeCover })
+                }
+              >
+                <SongCard
+                  cover={cover}
+                  name={name}
+                  artist={artist}
+                  albumName={albumName}
+                />
+              </li>
+            )
+          )}
         </ul>
       )}
     </>

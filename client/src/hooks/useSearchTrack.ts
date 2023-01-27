@@ -26,6 +26,7 @@ export const useSearchTrack = (token: string | undefined) => {
       const results = tracks?.items.map(
         ({ id, name, uri, artists, album: { images, name: albumName } }) => {
           let cover = NO_COVER;
+          let hugeCover = NO_COVER;
 
           if (images && images.length > 0 && images[0].height) {
             const sortedImages = [...images].sort(
@@ -33,6 +34,7 @@ export const useSearchTrack = (token: string | undefined) => {
             );
 
             cover = sortedImages[0].url;
+            hugeCover = sortedImages[sortedImages.length - 1].url;
           }
 
           return {
@@ -41,6 +43,7 @@ export const useSearchTrack = (token: string | undefined) => {
             uri,
             artist: artists[0].name,
             cover,
+            hugeCover,
             albumName,
           };
         }

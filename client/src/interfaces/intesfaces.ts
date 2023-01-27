@@ -4,6 +4,7 @@ export interface Search {
   uri: string;
   artist: string;
   cover: string;
+  hugeCover: string;
   albumName: string;
 }
 
@@ -11,4 +12,5 @@ export interface CurrentTrack {
   uri: string;
   artist: string;
   title: string;
+  hugeCover: string;
 }
