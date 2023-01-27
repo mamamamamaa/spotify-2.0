@@ -1,7 +1,7 @@
 const SpotifyWebApi = require("spotify-web-api-node");
 const lyricsFinder = require("lyrics-finder");
 
-const spotifyApi = new SpotifyWebApi();
+const spotifyApi = new SpotifyWebApi({});
 
 const getLyrics = async (req, res, next) => {
   const { artist, title } = req.query;
