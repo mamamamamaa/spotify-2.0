@@ -1,5 +1,5 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../store";
+import { AppDispatch, RootState } from "./store";
 
 const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
@@ -14,3 +14,5 @@ export const useAuth = () => {
 
   return { accessToken, refreshToken, expiresIn, error, isLoading };
 };
+
+export const useSongs = () => {};
