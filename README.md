@@ -1,6 +1,6 @@
 # spotify-2.0
 
-**This is my favorite project which aims to learn how to use the Spotify API and practice technologies like TypeScript, React.js, Node.js, Tailwindcss, Redux-toolkit.**
+**This is my pet project which aims to learn how to use the Spotify API and practice technologies like TypeScript, React.js, Node.js, Tailwindcss, Redux-toolkit.**
 
 ## How can you run this project?
 
