@@ -1,12 +1,9 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import SpotifyWebApi from "spotify-web-api-node";
 import { ILogin, IRefresh } from "../../interfaces/intesfaces";
+import { spotifyApi } from "../spotifyApi";
 
-const { REACT_APP_SERVER_HOST: address = "/", REACT_APP_CLIENT_ID: clientId } =
-  process.env;
-
-const spotifyApi = new SpotifyWebApi({ clientId });
+const { REACT_APP_SERVER_HOST: address = "/" } = process.env;
 
 export const login = createAsyncThunk<ILogin, string, { rejectValue: string }>(
   "auth/login",
