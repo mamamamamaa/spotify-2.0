@@ -1,33 +1,33 @@
-import { createContext, FC } from "react";
+import { FC, useEffect } from "react";
 import { LoginPage, LyricsPage, SearchPage, SavedTracksPage } from "../pages";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useAuth, useCurrentTrack, useSearchTrack, useSpotify } from "../hooks";
 import { Layout } from "./Layout/Layout";
-import { useAppDispatch, useSongs } from "../redux/hooks";
+import { useAppDispatch, useAuth, useSongs } from "../redux/hooks";
 import { login } from "../redux/auth";
 
 const code = new URLSearchParams(window.location.search).get("code") || "";
-export const TokenContext = createContext("");
 
 export const App: FC = () => {
-  // const accessToken = useAuth(code);
-  // useSpotify(accessToken);
   const dispatch = useAppDispatch();
   const { currentTrack } = useSongs();
+  const { accessToken } = useAuth();
 
-  // const { setSearch, searchResults } = useSearchTrack(accessToken);
-  // const { currentTrack, setCurrentTrack, lyrics } = useCurrentTrack();
-  if (code) {
-    dispatch(login(code));
-  }
+  useEffect(() => {
+    if (code && !accessToken) {
+      dispatch(login(code));
+    }
+  }, [code]);
 
   return (
     <Routes>
       <Route
         path="/login"
-        element={!code ? <LoginPage /> : <Navigate to="/" />}
+        element={!accessToken ? <LoginPage /> : <Navigate to="/" />}
       />
-      <Route path="/" element={code ? <Layout /> : <Navigate to="/login" />}>
+      <Route
+        path="/"
+        element={accessToken ? <Layout /> : <Navigate to="/login" />}
+      >
         <Route index element={<SearchPage />} />
         <Route path="/lyrics" element={currentTrack && <LyricsPage />} />
         <Route path="/saved" element={<SavedTracksPage />} />

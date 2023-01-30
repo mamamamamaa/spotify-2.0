@@ -12,6 +12,7 @@ const extraActions = [getLyrics, getSavedTracks, saveTrack, searchTracks];
 
 const initialState: ISongsInitialState = {
   searchedTracks: [],
+  searchSavedTracks: [],
   savedTracks: [],
   currentTrack: null,
   lyrics: "",

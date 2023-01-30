@@ -11,11 +11,11 @@ interface Props {
 }
 
 export const SongsList: FC = () => {
-  const { searchedTracks } = useSongs();
+  const { searchedTracks, isLoading } = useSongs();
   const dispatch = useAppDispatch();
   return (
     <>
-      {searchedTracks.length > 0 && (
+      {searchedTracks.length > 0 && !isLoading && (
         <ul className={style.list}>
           {searchedTracks.map((song) => {
             const { id, name, artist, uri, hugeCover } = song;
@@ -29,7 +29,7 @@ export const SongsList: FC = () => {
                   )
                 }
               >
-                <SongCard song={song} />
+                <SongCard song={song} songs={searchedTracks} />
               </li>
             );
           })}

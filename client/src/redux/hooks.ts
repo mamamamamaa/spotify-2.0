@@ -16,7 +16,6 @@ export const useAuth = () => {
 };
 
 export const useSongs = () => {
-  const search = useAppSelector((state) => state.songs.search);
   const savedTracks = useAppSelector((state) => state.songs.savedTracks);
   const searchedTracks = useAppSelector((state) => state.songs.searchedTracks);
   const currentTrack = useAppSelector((state) => state.songs.currentTrack);
@@ -26,7 +25,6 @@ export const useSongs = () => {
 
   return {
     savedTracks,
-    search,
     searchedTracks,
     currentTrack,
     lyrics,

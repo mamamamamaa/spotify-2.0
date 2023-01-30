@@ -2,13 +2,14 @@ import { FC, useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { useSaveTrack } from "../../hooks/useSaveTrack";
 import { Search } from "../../interfaces/intesfaces";
-import { spotifyApi } from "../../hooks";
+import { spotifyApi } from "../../redux/spotifyApi";
 
 interface Props {
   song: Search;
+  songs: Search[];
 }
 
-export const SongCard: FC<Props> = ({ song }) => {
+export const SongCard: FC<Props> = ({ song, songs }) => {
   const { setSong } = useSaveTrack();
   const [saved, setSaved] = useState<boolean>(false);
   const { cover, name, artist, albumName, id } = song;
@@ -21,6 +22,9 @@ export const SongCard: FC<Props> = ({ song }) => {
   useEffect(() => {
     const isSaved = async () => {
       try {
+        const ids = songs.map((song) => song.id);
+        const data = await spotifyApi.containsMySavedTracks(ids);
+        console.log(data);
         const { body } = await spotifyApi.containsMySavedTracks([id]);
 
         setSaved(body[0]);

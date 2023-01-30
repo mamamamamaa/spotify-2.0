@@ -1,17 +1,28 @@
+import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { spotifyApi } from "../../hooks";
-import axios from "axios/index";
+import { spotifyApi } from "../spotifyApi";
 import { Search } from "../../interfaces/intesfaces";
+
+interface ISearchTracksResult {
+  tracks: SpotifyApi.PagingObject<SpotifyApi.TrackObjectFull> | undefined;
+  isSaved: boolean[];
+}
 
 export const searchTracks = createAsyncThunk<
   SpotifyApi.PagingObject<SpotifyApi.TrackObjectFull> | undefined,
   string,
   { rejectValue: string }
->("songs/lyrics", async (query, thunkAPI) => {
+>("songs/search", async (query, thunkAPI) => {
   try {
     const {
       body: { tracks },
     } = await spotifyApi.searchTracks(query);
+
+    // if (tracks) {
+    //   const ids = tracks.items.map((track) => track.id);
+    //   const isSaved = await spotifyApi.containsMySavedTracks(ids);
+    //   return { tracks, isSaved };
+    // }
 
     return tracks;
   } catch (e) {

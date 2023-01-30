@@ -1,7 +1,7 @@
 import { BaseSyntheticEvent, FC } from "react";
 import { FiSearch } from "react-icons/fi";
 import debounce from "lodash.debounce";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useSongs } from "../../redux/hooks";
 import { searchTracks } from "../../redux/songs";
 
 interface Props {
@@ -10,8 +10,9 @@ interface Props {
 
 export const Searchbar: FC = () => {
   const dispatch = useAppDispatch();
+  const { isLoading } = useSongs();
   const handleSearch = (e: BaseSyntheticEvent) =>
-    dispatch(searchTracks(e.target.value));
+    !isLoading && dispatch(searchTracks(e.target.value));
 
   return (
     <form className="flex justify-center w-full">
