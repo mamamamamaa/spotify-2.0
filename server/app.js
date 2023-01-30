@@ -18,6 +18,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger(formatsLogger));
 
 app.use("/auth", authRoute);
-app.use("/songs", songsRoute);
+app.use("/tracks", songsRoute);
 
 app.listen(PORT, () => console.log(`Server is running on the ${PORT} port`));

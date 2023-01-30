@@ -16,14 +16,18 @@ export const useAuth = () => {
 };
 
 export const useSongs = () => {
-  const savedTracks = useAppSelector((state) => state.songs.savedTracks);
-  const searchedTracks = useAppSelector((state) => state.songs.searchedTracks);
-  const currentTrack = useAppSelector((state) => state.songs.currentTrack);
-  const lyrics = useAppSelector((state) => state.songs.lyrics);
-  const error = useAppSelector((state) => state.songs.error);
-  const isLoading = useAppSelector((state) => state.songs.isLoading);
+  const savedTracks = useAppSelector((state) => state.tracks.savedTracks);
+  const isSavedTracks = useAppSelector(
+    (state) => state.tracks.searchSavedTracks
+  );
+  const searchedTracks = useAppSelector((state) => state.tracks.searchedTracks);
+  const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
+  const lyrics = useAppSelector((state) => state.tracks.lyrics);
+  const error = useAppSelector((state) => state.tracks.error);
+  const isLoading = useAppSelector((state) => state.tracks.isLoading);
 
   return {
+    isSavedTracks,
     savedTracks,
     searchedTracks,
     currentTrack,

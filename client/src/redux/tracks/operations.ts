@@ -5,26 +5,22 @@ import { Search } from "../../interfaces/intesfaces";
 
 interface ISearchTracksResult {
   tracks: SpotifyApi.PagingObject<SpotifyApi.TrackObjectFull> | undefined;
-  isSaved: boolean[];
+  isSaved: SpotifyApi.CheckUsersSavedTracksResponse | undefined;
 }
 
 export const searchTracks = createAsyncThunk<
-  SpotifyApi.PagingObject<SpotifyApi.TrackObjectFull> | undefined,
+  ISearchTracksResult | undefined,
   string,
   { rejectValue: string }
->("songs/search", async (query, thunkAPI) => {
+>("tracks/search", async (query, thunkAPI) => {
   try {
     const {
       body: { tracks },
     } = await spotifyApi.searchTracks(query);
 
-    // if (tracks) {
-    //   const ids = tracks.items.map((track) => track.id);
-    //   const isSaved = await spotifyApi.containsMySavedTracks(ids);
-    //   return { tracks, isSaved };
-    // }
-
-    return tracks;
+    const ids = tracks?.items.map((track) => track.id);
+    const data = ids && (await spotifyApi.containsMySavedTracks(ids));
+    return { tracks, isSaved: data?.body };
   } catch (e) {
     if (e instanceof Error) {
       return thunkAPI.rejectWithValue(e.message);
@@ -36,7 +32,7 @@ export const getLyrics = createAsyncThunk<
   string,
   { artist: string; title: string },
   { rejectValue: string }
->("songs/lyrics", async (data, thunkAPI) => {
+>("tracks/lyrics", async (data, thunkAPI) => {
   try {
     const {
       data: { lyrics },
@@ -56,7 +52,7 @@ export const saveTrack = createAsyncThunk<
   Search | undefined,
   Search,
   { rejectValue: string }
->("songs/save", async (track, thunkAPI) => {
+>("tracks/save", async (track, thunkAPI) => {
   try {
     const { statusCode } = await spotifyApi.addToMySavedTracks([track.id]);
     return statusCode === 200 ? track : undefined;
@@ -71,13 +67,30 @@ export const getSavedTracks = createAsyncThunk<
   SpotifyApi.SavedTrackObject[] | undefined,
   undefined,
   { rejectValue: string }
->("songs/getSaved", async (_, thunkAPI) => {
+>("tracks/getSaved", async (_, thunkAPI) => {
   try {
     const {
       body: { items },
     } = await spotifyApi.getMySavedTracks();
 
     return items;
+  } catch (e) {
+    if (e instanceof Error) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+});
+
+export const removeTrackFromSaved = createAsyncThunk<
+  string[] | undefined,
+  string[],
+  { rejectValue: string }
+>("tracks/removeFromSaved", async (ids, thunkAPI) => {
+  try {
+    const { statusCode } = await spotifyApi.removeFromMySavedTracks(ids);
+    if (statusCode === 200) {
+      return ids;
+    }
   } catch (e) {
     if (e instanceof Error) {
       return thunkAPI.rejectWithValue(e.message);

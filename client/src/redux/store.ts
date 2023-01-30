@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "./auth";
-import { songsReducer } from "./songs/songsSlice";
+import { tracksReducer } from "./tracks";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    songs: songsReducer,
+    tracks: tracksReducer,
   },
 });
 

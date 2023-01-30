@@ -2,13 +2,20 @@ import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   getLyrics,
   getSavedTracks,
+  removeTrackFromSaved,
   saveTrack,
   searchTracks,
 } from "./operations";
 import { ISongsInitialState } from "../../interfaces/intesfaces";
 import { mapSavedTracks, mapSearchedTracks } from "./helpers";
 
-const extraActions = [getLyrics, getSavedTracks, saveTrack, searchTracks];
+const extraActions = [
+  getLyrics,
+  getSavedTracks,
+  saveTrack,
+  searchTracks,
+  removeTrackFromSaved,
+];
 
 const initialState: ISongsInitialState = {
   searchedTracks: [],
@@ -20,8 +27,8 @@ const initialState: ISongsInitialState = {
   error: undefined,
 };
 
-const songsSlice = createSlice({
-  name: "songs",
+const tracksSlice = createSlice({
+  name: "tracks",
   initialState,
   reducers: {
     setCurrentTrack(state, action) {
@@ -30,9 +37,19 @@ const songsSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder
-      .addCase(searchTracks.fulfilled, (state, action) => {
+      .addCase(removeTrackFromSaved.fulfilled, (state, action) => {
         if (action.payload) {
-          state.searchedTracks = mapSearchedTracks(action.payload);
+          state.savedTracks = state.savedTracks.filter(({ id: trackId }) => {
+            return !action.payload?.find((id) => id === trackId);
+          });
+        }
+      })
+      .addCase(searchTracks.fulfilled, (state, action) => {
+        if (action.payload?.tracks) {
+          state.searchedTracks = mapSearchedTracks(action.payload.tracks);
+        }
+        if (action.payload?.isSaved) {
+          state.searchSavedTracks = action.payload.isSaved;
         }
       })
       .addCase(getLyrics.fulfilled, (state, action) => {
@@ -74,6 +91,6 @@ const songsSlice = createSlice({
       ),
 });
 
-export const { setCurrentTrack } = songsSlice.actions;
+export const { setCurrentTrack } = tracksSlice.actions;
 
-export const songsReducer = songsSlice.reducer;
+export const tracksReducer = tracksSlice.reducer;

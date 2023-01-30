@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { Lyrics } from "../components/Lyrics/Lyrics";
 import { CurrentTrack } from "../interfaces/intesfaces";
 import { useAppDispatch, useSongs } from "../redux/hooks";
-import { getLyrics } from "../redux/songs";
+import { getLyrics } from "../redux/tracks";
 
 interface Props {
   lyrics: string;
