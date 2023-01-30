@@ -1,13 +1,17 @@
 import { BaseSyntheticEvent, FC } from "react";
 import { FiSearch } from "react-icons/fi";
 import debounce from "lodash.debounce";
+import { useAppDispatch } from "../../redux/hooks";
+import { searchTracks } from "../../redux/songs";
 
 interface Props {
   setSearch: Function;
 }
 
-export const Searchbar: FC<Props> = ({ setSearch }) => {
-  const handleSearch = (e: BaseSyntheticEvent) => setSearch(e.target.value);
+export const Searchbar: FC = () => {
+  const dispatch = useAppDispatch();
+  const handleSearch = (e: BaseSyntheticEvent) =>
+    dispatch(searchTracks(e.target.value));
 
   return (
     <form className="flex justify-center w-full">

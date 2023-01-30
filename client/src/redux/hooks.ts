@@ -15,4 +15,22 @@ export const useAuth = () => {
   return { accessToken, refreshToken, expiresIn, error, isLoading };
 };
 
-export const useSongs = () => {};
+export const useSongs = () => {
+  const search = useAppSelector((state) => state.songs.search);
+  const savedTracks = useAppSelector((state) => state.songs.savedTracks);
+  const searchedTracks = useAppSelector((state) => state.songs.searchedTracks);
+  const currentTrack = useAppSelector((state) => state.songs.currentTrack);
+  const lyrics = useAppSelector((state) => state.songs.lyrics);
+  const error = useAppSelector((state) => state.songs.error);
+  const isLoading = useAppSelector((state) => state.songs.isLoading);
+
+  return {
+    savedTracks,
+    search,
+    searchedTracks,
+    currentTrack,
+    lyrics,
+    error,
+    isLoading,
+  };
+};

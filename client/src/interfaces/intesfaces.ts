@@ -24,7 +24,6 @@ export interface IAuthInitialState {
 }
 
 export interface ISongsInitialState {
-  search: string;
   searchedTracks: Search[];
   savedTracks: Search[];
   currentTrack: CurrentTrack | null;

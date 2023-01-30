@@ -12,7 +12,7 @@ interface Props {
   currentTrack: CurrentTrack | undefined;
 }
 
-export const Layout: FC<Props> = ({ currentTrack, accessToken }) => {
+export const Layout: FC = () => {
   return (
     <div className={style.layoutContainer}>
       <div className={style.sidebar}>
@@ -23,7 +23,7 @@ export const Layout: FC<Props> = ({ currentTrack, accessToken }) => {
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-      <Playback token={accessToken} currentTrack={currentTrack} />
+      <Playback />
     </div>
   );
 };

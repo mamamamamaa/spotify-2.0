@@ -11,7 +11,6 @@ import { mapSavedTracks, mapSearchedTracks } from "./helpers";
 const extraActions = [getLyrics, getSavedTracks, saveTrack, searchTracks];
 
 const initialState: ISongsInitialState = {
-  search: "",
   searchedTracks: [],
   savedTracks: [],
   currentTrack: null,
@@ -23,7 +22,11 @@ const initialState: ISongsInitialState = {
 const songsSlice = createSlice({
   name: "songs",
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentTrack(state, action) {
+      state.currentTrack = action.payload;
+    },
+  },
   extraReducers: (builder) =>
     builder
       .addCase(searchTracks.fulfilled, (state, action) => {
@@ -69,5 +72,7 @@ const songsSlice = createSlice({
         }
       ),
 });
+
+export const { setCurrentTrack } = songsSlice.actions;
 
 export const songsReducer = songsSlice.reducer;

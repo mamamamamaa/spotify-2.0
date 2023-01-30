@@ -9,15 +9,11 @@ interface Props {
   searchResults: Search[];
 }
 
-export const SearchPage: FC<Props> = ({
-  searchResults,
-  setSearch,
-  setCurrentTrack,
-}) => {
+export const SearchPage: FC = () => {
   return (
     <div className="w-full">
-      <Searchbar setSearch={setSearch} />
-      <SongsList setCurrentTrack={setCurrentTrack} list={searchResults} />
+      <Searchbar />
+      <SongsList />
     </div>
   );
 };

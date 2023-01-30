@@ -1,23 +1,23 @@
 import { FC } from "react";
 import SpotifyWebPlayer from "react-spotify-web-playback";
 import { CurrentTrack } from "../../interfaces/intesfaces";
+import { useAuth, useSongs } from "../../redux/hooks";
 
 interface Props {
   token: string;
   currentTrack: CurrentTrack | undefined;
 }
 
-export const Playback: FC<Props> = ({ token, currentTrack }) => {
-  if (!token) {
-    return null;
-  }
+export const Playback: FC = () => {
+  const { accessToken } = useAuth();
+  const { currentTrack } = useSongs();
 
   return (
     <>
       {currentTrack && (
         <div className="fixed bottom-0 left-0 w-screen flex">
           <SpotifyWebPlayer
-            token={token}
+            token={accessToken}
             uris={currentTrack?.uri}
             autoPlay={true}
             play={true}
