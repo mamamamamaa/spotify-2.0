@@ -3,24 +3,6 @@ import { spotifyApi } from "../../hooks";
 import axios from "axios/index";
 import { Search } from "../../interfaces/intesfaces";
 
-const NO_COVER =
-  "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ANo_cover.JPG&psig=AOvVaw17nPxRIKb5bGQlaEo68ZzB&ust=1674314482495000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCJjpldG51vwCFQAAAAAdAAAAABAE";
-
-// export const searchTrack = createAsyncThunk<
-//   string,
-//   string,
-//   { rejectValue: string }
-// >("song/search", async (search, thunkAPI) => {
-//   try {
-//     return search;
-//     // return await spotifyApi.searchTracks(search);
-//   } catch (e) {
-//     if (e instanceof Error) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// });
-
 export const searchTracks = createAsyncThunk<
   SpotifyApi.PagingObject<SpotifyApi.TrackObjectFull> | undefined,
   string,

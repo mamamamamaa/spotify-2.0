@@ -15,10 +15,20 @@ export interface CurrentTrack {
   hugeCover: string;
 }
 
-export interface IInitialState {
+export interface IAuthInitialState {
   accessToken: string;
   refreshToken: string;
   expiresIn: number;
+  isLoading: boolean;
+  error: string | undefined;
+}
+
+export interface ISongsInitialState {
+  search: string;
+  searchedTracks: Search[];
+  savedTracks: Search[];
+  currentTrack: CurrentTrack | null;
+  lyrics: string;
   isLoading: boolean;
   error: string | undefined;
 }

@@ -1,8 +1,8 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { login, refresh } from "./operations";
-import { IInitialState } from "../../interfaces/intesfaces";
+import { IAuthInitialState } from "../../interfaces/intesfaces";
 
-const initialState: IInitialState = {
+const initialState: IAuthInitialState = {
   accessToken: "",
   refreshToken: "",
   expiresIn: 0,
