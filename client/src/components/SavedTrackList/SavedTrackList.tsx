@@ -1,25 +1,23 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
+import { getSavedTracks, setCurrentTrack } from "../../redux/tracks";
 import { TrackCard } from "../TrackCard/TrackCard";
-import { Search } from "../../interfaces/intesfaces";
-import style from "./SongList.module.css";
 import { useAppDispatch, useSongs } from "../../redux/hooks";
-import { setCurrentTrack } from "../../redux/tracks";
 
-interface Props {
-  list: Search[];
-  setCurrentTrack: Function;
-}
+import style from "./SavedTrackList.module.css";
 
-export const TrackList: FC = () => {
-  const { searchedTracks, isLoading, isSavedTracks } = useSongs();
+export const SavedTrackList: FC = () => {
   const dispatch = useAppDispatch();
+  const { savedTracks, isLoading } = useSongs();
+
+  useEffect(() => {
+    dispatch(getSavedTracks());
+  }, []);
   return (
     <>
-      {searchedTracks.length > 0 && !isLoading && (
+      {savedTracks.length > 0 && !isLoading && (
         <ul className={style.list}>
-          {searchedTracks.map((track, idx) => {
+          {savedTracks.map((track, idx) => {
             const { id, name, artist, uri, hugeCover } = track;
-            const isSaved = isSavedTracks[idx];
             return (
               <li
                 key={id}
@@ -29,7 +27,7 @@ export const TrackList: FC = () => {
                   )
                 }
               >
-                <TrackCard track={track} likes={true} isSaved={isSaved} />
+                <TrackCard track={track} likes={true} />
               </li>
             );
           })}

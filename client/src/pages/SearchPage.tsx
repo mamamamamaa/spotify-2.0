@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Searchbar } from "../components/Searchbar/Searchbar";
-import { TrackList } from "../components/TrackList/TrackList";
+import { SearchTrackList } from "../components/SearchTrackList/SearchTrackList";
 import { Search } from "../interfaces/intesfaces";
 
 interface Props {
@@ -13,7 +13,7 @@ export const SearchPage: FC = () => {
   return (
     <div className="w-full">
       <Searchbar />
-      <TrackList />
+      <SearchTrackList />
     </div>
   );
 };

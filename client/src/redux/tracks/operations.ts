@@ -36,10 +36,11 @@ export const getLyrics = createAsyncThunk<
   try {
     const {
       data: { lyrics },
-    } = await axios.get("http://localhost:3001/songs/lyrics", {
+    } = await axios.get("http://localhost:3001/tracks/lyrics", {
       params: data,
     });
 
+    console.log(lyrics);
     return lyrics;
   } catch (e) {
     if (e instanceof Error) {

@@ -6,8 +6,8 @@ import { saveTrack } from "../../redux/tracks";
 
 interface Props {
   track: Search;
-  isSaved: boolean;
-  likes: boolean;
+  isSaved?: boolean;
+  likes?: boolean;
 }
 
 export const TrackCard: FC<Props> = ({ track, isSaved, likes }) => {
