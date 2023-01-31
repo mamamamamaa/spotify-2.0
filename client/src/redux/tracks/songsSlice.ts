@@ -38,11 +38,11 @@ const tracksSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(removeTrackFromSaved.fulfilled, (state, action) => {
-        if (action.payload) {
-          state.savedTracks = state.savedTracks.filter(({ id: trackId }) => {
-            return !action.payload?.find((id) => id === trackId);
-          });
-        }
+        // if (action.payload) {
+        //   state.savedTracks = state.savedTracks.filter(({ id: trackId }) => {
+        //     return !action.payload?.find((id) => id === trackId);
+        //   });
+        // }
       })
       .addCase(searchTracks.fulfilled, (state, action) => {
         if (action.payload?.tracks) {
@@ -56,9 +56,9 @@ const tracksSlice = createSlice({
         state.lyrics = action.payload;
       })
       .addCase(saveTrack.fulfilled, (state, action) => {
-        if (action.payload) {
-          state.savedTracks.push(action.payload);
-        }
+        // if (action.payload) {
+        //   state.savedTracks.push(action.payload);
+        // }
       })
       .addCase(getSavedTracks.fulfilled, (state, action) => {
         if (action.payload) {

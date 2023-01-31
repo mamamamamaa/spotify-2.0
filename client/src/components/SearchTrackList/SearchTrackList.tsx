@@ -11,24 +11,15 @@ interface Props {
 }
 
 export const SearchTrackList: FC = () => {
-  const { searchedTracks, isLoading, isSavedTracks } = useSongs();
-  const dispatch = useAppDispatch();
+  const { searchedTracks, isSavedTracks } = useSongs();
   return (
     <>
-      {searchedTracks.length > 0 && !isLoading && (
+      {searchedTracks.length > 0 && (
         <ul className={style.list}>
           {searchedTracks.map((track, idx) => {
-            const { id, name, artist, uri, hugeCover } = track;
             const isSaved = isSavedTracks[idx];
             return (
-              <li
-                key={id}
-                onClick={() =>
-                  dispatch(
-                    setCurrentTrack({ uri, artist, title: name, hugeCover })
-                  )
-                }
-              >
+              <li key={track.id}>
                 <TrackCard track={track} isSaved={isSaved} />
               </li>
             );

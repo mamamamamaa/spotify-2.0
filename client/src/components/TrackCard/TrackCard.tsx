@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { Search } from "../../interfaces/intesfaces";
 import { useAppDispatch } from "../../redux/hooks";
@@ -8,13 +8,14 @@ import {
   setCurrentTrack,
 } from "../../redux/tracks";
 
+import style from "./TrackCard.module.css";
+
 interface Props {
   track: Search;
   isSaved?: boolean;
-  likes?: boolean;
 }
 
-export const TrackCard: FC<Props> = ({ track, isSaved, likes }) => {
+export const TrackCard: FC<Props> = ({ track, isSaved }) => {
   const [shouldRemove, setShouldRemove] = useState<boolean>(isSaved ?? true);
   const dispatch = useAppDispatch();
   const { uri, hugeCover, cover, name, artist, albumName, id } = track;
@@ -28,24 +29,22 @@ export const TrackCard: FC<Props> = ({ track, isSaved, likes }) => {
     setShouldRemove((prevState) => !prevState);
   };
 
-  const color = shouldRemove ? "#57B65F" : "#FFFFFF";
-
   return (
-    <div className="flex items-center h-16 justify-between pl-3 pr-5">
+    <div className={style.cardWrapper}>
       <div
-        className="flex items-center cursor-pointer hover:scale-99"
+        className={style.trackInfoWrapper}
         onClick={() =>
           dispatch(setCurrentTrack({ uri, artist, title: name, hugeCover }))
         }
       >
-        <img src={cover} alt={albumName} className="h-16 w-16" />
-        <div className="flex flex-col ml-3">
-          <span className="text-white text-2xl">{name}</span>
-          <span className="text-gray text-xl">{artist}</span>
+        <img src={cover} alt={albumName} className={style.cover} />
+        <div className={style.trackInfo}>
+          <span className={style.title}>{name}</span>
+          <span className={style.artist}>{artist}</span>
         </div>
       </div>
       <button onClick={handleSaveOrRemoveTrack}>
-        <FaHeart size={25} color={color} />
+        <FaHeart size={25} color={shouldRemove ? "#57B65F" : "#FFFFFF"} />
       </button>
     </div>
   );

@@ -1,24 +1,19 @@
-import { FC, useEffect } from "react";
-import { getSavedTracks, setCurrentTrack } from "../../redux/tracks";
+import { FC } from "react";
 import { TrackCard } from "../TrackCard/TrackCard";
-import { useAppDispatch, useSongs } from "../../redux/hooks";
+import { useSongs } from "../../redux/hooks";
 
 import style from "./SavedTrackList.module.css";
 
 export const SavedTrackList: FC = () => {
-  const dispatch = useAppDispatch();
-  const { savedTracks, isLoading } = useSongs();
+  const { savedTracks } = useSongs();
 
-  useEffect(() => {
-    dispatch(getSavedTracks());
-  }, []);
   return (
     <>
-      {savedTracks.length > 0 && !isLoading && (
+      {savedTracks.length > 0 && (
         <ul className={style.list}>
           {savedTracks.map((track) => (
             <li key={track.id}>
-              <TrackCard track={track} likes={true} />
+              <TrackCard track={track} />
             </li>
           ))}
         </ul>

@@ -1,0 +1,23 @@
+.cardWrapper {
+    @apply flex items-center h-16 justify-between pl-3 pr-5;
+}
+
+.trackInfoWrapper {
+    @apply flex items-center cursor-pointer hover:scale-99;
+}
+
+.trackInfo {
+    @apply flex flex-col ml-3;
+}
+
+.cover {
+    @apply h-16 w-16;
+}
+
+.title {
+    @apply text-white text-2xl
+}
+
+.artist {
+    @apply text-gray text-xl
+}
