@@ -16,21 +16,11 @@ export const SavedTrackList: FC = () => {
     <>
       {savedTracks.length > 0 && !isLoading && (
         <ul className={style.list}>
-          {savedTracks.map((track, idx) => {
-            const { id, name, artist, uri, hugeCover } = track;
-            return (
-              <li
-                key={id}
-                onClick={() =>
-                  dispatch(
-                    setCurrentTrack({ uri, artist, title: name, hugeCover })
-                  )
-                }
-              >
-                <TrackCard track={track} likes={true} />
-              </li>
-            );
-          })}
+          {savedTracks.map((track) => (
+            <li key={track.id}>
+              <TrackCard track={track} likes={true} />
+            </li>
+          ))}
         </ul>
       )}
     </>
