@@ -22,6 +22,9 @@ export const Playback: FC = () => {
             autoPlay={true}
             play={true}
             initialVolume={0.5}
+            persistDeviceSelection={true}
+            showSaveIcon={true}
+            magnifySliderOnHover={true}
             styles={{
               bgColor: "#282828",
               activeColor: "#57B65F",

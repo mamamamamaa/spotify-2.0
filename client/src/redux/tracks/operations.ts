@@ -40,7 +40,6 @@ export const getLyrics = createAsyncThunk<
       params: data,
     });
 
-    console.log(lyrics);
     return lyrics;
   } catch (e) {
     if (e instanceof Error) {
