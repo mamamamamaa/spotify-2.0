@@ -4,7 +4,7 @@
 
 ## How can you run this project?
 
-1. **You have to buy a premium Spotify subscription**
+1. **You have to buy a premium Spotify subscription!!!**
 
 2. Create an account on [Spotify for Developers](https://developer.spotify.com/) in the Dashboard section, create a new app
 
