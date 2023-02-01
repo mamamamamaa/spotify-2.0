@@ -14,13 +14,13 @@
    > Get client secret
  
 4. Clone this repository : 
-   > Paste in terminal: `git clone <https://github.com/mamamamamaa/spotify-2.0.git> .`
+   > Paste in terminal: `git clone https://github.com/mamamamamaa/spotify-2.0.git .`
 
 5. Move to client part of application :
    > Type in terminal next commands
     ```
     cd client
-    npm i / yarn (__if you use **yarn** package manager__)
+    npm i / yarn 
     ```
     
    > Create file `.env` and initialize environment variables such as:
@@ -36,7 +36,7 @@
    > Type in terminal next commands
     ```
     cd server
-    npm i / yarn (__if you use **yarn** package manager__)
+    npm i / yarn
     ```
     
    > Create file `.env` and initialize environment variables such as:
