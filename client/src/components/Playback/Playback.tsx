@@ -1,12 +1,6 @@
 import { FC } from "react";
 import SpotifyWebPlayer from "react-spotify-web-playback";
-import { CurrentTrack } from "../../interfaces/intesfaces";
 import { useAuth, useSongs } from "../../redux/hooks";
-
-interface Props {
-  token: string;
-  currentTrack: CurrentTrack | undefined;
-}
 
 export const Playback: FC = () => {
   const { accessToken } = useAuth();

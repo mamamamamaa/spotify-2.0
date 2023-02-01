@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { TrackCard } from "../TrackCard/TrackCard";
 import { useSongs } from "../../redux/hooks";
-
 import style from "./SavedTrackList.module.css";
 
 export const SavedTrackList: FC = () => {

@@ -1,12 +1,8 @@
+import debounce from "lodash.debounce";
 import { BaseSyntheticEvent, FC } from "react";
 import { FiSearch } from "react-icons/fi";
-import debounce from "lodash.debounce";
 import { useAppDispatch, useSongs } from "../../redux/hooks";
 import { searchTracks } from "../../redux/tracks";
-
-interface Props {
-  setSearch: Function;
-}
 
 export const Searchbar: FC = () => {
   const dispatch = useAppDispatch();

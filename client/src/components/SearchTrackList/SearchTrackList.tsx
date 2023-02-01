@@ -1,14 +1,7 @@
 import { FC } from "react";
 import { TrackCard } from "../TrackCard/TrackCard";
-import { Search } from "../../interfaces/intesfaces";
+import { useSongs } from "../../redux/hooks";
 import style from "./SearchTrackList.module.css";
-import { useAppDispatch, useSongs } from "../../redux/hooks";
-import { setCurrentTrack } from "../../redux/tracks";
-
-interface Props {
-  list: Search[];
-  setCurrentTrack: Function;
-}
 
 export const SearchTrackList: FC = () => {
   const { searchedTracks, isSavedTracks } = useSongs();

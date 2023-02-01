@@ -1,13 +1,7 @@
 import { FC, useEffect } from "react";
 import { Lyrics } from "../components/Lyrics/Lyrics";
-import { CurrentTrack } from "../interfaces/intesfaces";
 import { useAppDispatch, useSongs } from "../redux/hooks";
 import { getLyrics } from "../redux/tracks";
-
-interface Props {
-  lyrics: string;
-  trackInfo: CurrentTrack;
-}
 
 export const LyricsPage: FC = () => {
   const { currentTrack, lyrics } = useSongs();
@@ -18,7 +12,8 @@ export const LyricsPage: FC = () => {
         getLyrics({ artist: currentTrack.artist, title: currentTrack.title })
       );
     }
-  }, [dispatch]);
+  }, [currentTrack, dispatch]);
+
   return (
     <>
       {currentTrack ? (

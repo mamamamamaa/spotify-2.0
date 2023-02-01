@@ -1,14 +1,13 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { Search } from "../../interfaces/intesfaces";
 import { useAppDispatch } from "../../redux/hooks";
+import style from "./TrackCard.module.css";
 import {
   removeTrackFromSaved,
   saveTrack,
   setCurrentTrack,
 } from "../../redux/tracks";
-
-import style from "./TrackCard.module.css";
 
 interface Props {
   track: Search;

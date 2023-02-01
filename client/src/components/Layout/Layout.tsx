@@ -2,15 +2,8 @@ import { FC, Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { Logo } from "../Logo/Logo";
 import { Playback } from "../Playback/Playback";
-import { CurrentTrack } from "../../interfaces/intesfaces";
 import { Navigation } from "../Navigation/Navigation";
-
 import style from "./Layout.module.css";
-
-interface Props {
-  accessToken: string;
-  currentTrack: CurrentTrack | undefined;
-}
 
 export const Layout: FC = () => {
   return (
