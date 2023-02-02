@@ -5,3 +5,7 @@
 .labelWrapper{
     @apply relative w-full;
 }
+
+.iconWrapper {
+    @apply absolute top-2.5 left-2 text-gray hover:text-white ease-in-out duration-300 cursor-pointer;
+}

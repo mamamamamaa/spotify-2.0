@@ -14,10 +14,7 @@ export const Searchbar: FC = () => {
   return (
     <form className={style.formWrapper}>
       <label className={style.labelWrapper}>
-        <FiSearch
-          className="absolute top-2.5 left-2 text-gray hover:text-white ease-in-out duration-300 cursor-pointer"
-          size={30}
-        />
+        <FiSearch className={style.iconWrapper} size={30} />
         <input
           type="text"
           onChange={debounce(handleSearch, 300)}
