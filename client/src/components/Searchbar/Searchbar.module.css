@@ -9,3 +9,7 @@
 .iconWrapper {
     @apply absolute top-2.5 left-2 text-gray hover:text-white ease-in-out duration-300 cursor-pointer;
 }
+
+.inputWrapper{
+    @apply bg-dark text-gray h-12 w-full rounded-xl pl-12 pr-3.5 focus:outline-0;
+}

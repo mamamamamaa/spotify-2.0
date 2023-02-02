@@ -19,7 +19,7 @@ export const Searchbar: FC = () => {
           type="text"
           onChange={debounce(handleSearch, 300)}
           placeholder="Search track/artist"
-          className="bg-dark text-gray h-12 w-full rounded-xl pl-12 pr-3.5 focus:outline-0"
+          className={style.inputWrapper}
         />
       </label>
     </form>
