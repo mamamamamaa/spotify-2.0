@@ -1,6 +1,7 @@
 import { FC } from "react";
-import SpotifyWebPlayer from "react-spotify-web-playback";
 import { useAuth, useSongs } from "../../redux/hooks";
+import SpotifyWebPlayer from "react-spotify-web-playback";
+import style from "./Playback.module.css";
 
 export const Playback: FC = () => {
   const { accessToken } = useAuth();
@@ -9,7 +10,7 @@ export const Playback: FC = () => {
   return (
     <>
       {currentTrack && (
-        <div className="fixed bottom-0 left-0 w-screen flex">
+        <div className={style.wrapper}>
           <SpotifyWebPlayer
             token={accessToken}
             uris={currentTrack?.uri}
