@@ -1,0 +1,7 @@
+.formWrapper{
+    @apply flex justify-center w-full;
+}
+
+.labelWrapper{
+    @apply relative w-full;
+}
