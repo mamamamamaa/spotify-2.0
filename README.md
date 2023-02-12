@@ -32,7 +32,7 @@
      ```
      npm start / yarn start
      ```
-6. Move to server part of application :
+6. Move to server part of application 
    > Type in terminal next commands
     ```
     cd server
