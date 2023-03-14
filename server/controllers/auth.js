@@ -2,7 +2,7 @@ const SpotifyWebApi = require("spotify-web-api-node");
 
 const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } = process.env;
 
-const refresh = async (req, res, next) => {
+const refresh = async (req, res) => {
   const { refreshToken } = req.body;
 
   const spotifyApi = new SpotifyWebApi({
