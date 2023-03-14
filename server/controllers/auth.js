@@ -21,7 +21,7 @@ const refresh = async (req, res) => {
   }
 };
 
-const login = async (req, res, next) => {
+const login = async (req, res) => {
   const { code } = req.body;
   const spotifyApi = new SpotifyWebApi({
     redirectUri: REDIRECT_URI,
