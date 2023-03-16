@@ -1,14 +1,16 @@
 import { FC, useEffect } from "react";
-import { LoginPage, LyricsPage, SearchPage, SavedTracksPage } from "../pages";
 import { Navigate, Route, Routes } from "react-router-dom";
+
+import { login } from "../redux/auth";
 import { Layout } from "./Layout/Layout";
 import { useAppDispatch, useAuth, useSongs } from "../redux/hooks";
-import { login } from "../redux/auth";
+import { LoginPage, LyricsPage, SearchPage, SavedTracksPage } from "../pages";
 
 const code = new URLSearchParams(window.location.search).get("code") || "";
 
 export const App: FC = () => {
   const dispatch = useAppDispatch();
+
   const { currentTrack } = useSongs();
   const { accessToken } = useAuth();
 
