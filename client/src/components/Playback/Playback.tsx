@@ -1,6 +1,8 @@
 import { FC } from "react";
-import { useAuth, useSongs } from "../../redux/hooks";
 import SpotifyWebPlayer from "react-spotify-web-playback";
+
+import { useAuth, useSongs } from "../../redux/hooks";
+
 import style from "./Playback.module.css";
 
 export const Playback: FC = () => {
