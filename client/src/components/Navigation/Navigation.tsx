@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
-import { FiHeart, FiSearch } from "react-icons/fi";
 import { TbMicrophone2 } from "react-icons/tb";
+import { FiHeart, FiSearch } from "react-icons/fi";
+
 import style from "./Navigation.module.css";
 
 export const Navigation: FC = () => {
