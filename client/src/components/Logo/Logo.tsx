@@ -1,6 +1,7 @@
 import { FC } from "react";
-import LogoIcon from "../../icons/Logo.svg";
+
 import style from "./Logo.module.css";
+import LogoIcon from "../../icons/Logo.svg";
 
 interface Props {
   type: "login" | "dash";
