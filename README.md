@@ -2,7 +2,7 @@
 
 **This is my pet project which aims to learn how to use the Spotify API and practice technologies like TypeScript, React.js, Node.js, Tailwindcss, Redux-toolkit.**
 
-## How can you run this project ?
+## How can you run this project?
 
 1. **You have to buy a premium Spotify subscription!!!**
 
