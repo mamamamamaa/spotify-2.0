@@ -26,7 +26,7 @@ export interface IAuthInitialState {
 export interface ISongsInitialState {
   searchedTracks: Search[];
   searchSavedTracks: boolean[];
-  savedTracks: Search[];
+  savedTracks: Search[]; 
   currentTrack: CurrentTrack | null;
   lyrics: string;
   isLoading: boolean;
