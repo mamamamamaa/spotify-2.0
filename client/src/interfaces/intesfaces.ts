@@ -6,7 +6,7 @@ export interface Search {
   cover: string;
   hugeCover: string;
   albumName: string;
-}
+} 
 
 export interface CurrentTrack {
   uri: string;
